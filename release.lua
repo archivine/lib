@@ -985,5 +985,4 @@ function library:init()
 	return gui;
 end
 
-local window = library:init()
-return window
+return library
