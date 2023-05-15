@@ -985,5 +985,5 @@ function library:init()
 	return gui;
 end
 
-getgenv().library = library
-return library
+local window = library:init()
+return window
