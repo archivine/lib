@@ -2,7 +2,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/archi
  
 local Window = Library:CreateWindow("sheizehax", {
         AccentColor = Color3.fromRGB(255, 255, 255),
-        Size = UDim2.new(600, 800)
+        Size = UDim2.new(600, 700)
     }
 );
 
