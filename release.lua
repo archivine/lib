@@ -380,7 +380,8 @@ function Library:CreateWindow(Title, Options)
 							
 							local Toggle = {
 								State = false,
-								Hover = false
+								Hover = false,
+                                OnChanged = function() end
 							}
 							
 							-- Render
@@ -442,7 +443,12 @@ function Library:CreateWindow(Title, Options)
 								Toggle["1"].MouseLeave:Connect(function()
 									Toggle.Hover = false;
 								end)
-								
+																
+								function Toggle:OnChanged(Func)
+									Toggle.Changed = Func;
+									Func();
+								end
+
 								function Toggle:Activate()
 									
 									if Toggle.State then
@@ -468,7 +474,7 @@ function Library:CreateWindow(Title, Options)
 										if Toggle.Hover then
 
 											Toggle:Activate();
-											print(Toggle.State)
+											Toggle:OnChanged();
 
 										end
 									end
@@ -480,7 +486,7 @@ function Library:CreateWindow(Title, Options)
 							
 							Groupbox:Rescale()
 							
-							return Toggle.State
+							return Toggle
 							
 						end
 						
@@ -489,7 +495,8 @@ function Library:CreateWindow(Title, Options)
 								CurrentValue = 0,	
 								MaxSize = 0,
                                 DefaultValue = 1,
-                                Rounding = 0
+                                Rounding = 0,
+                                OnChanged = function() end
 							};
 							
                             -- Unpack args
@@ -648,7 +655,7 @@ function Library:CreateWindow(Title, Options)
 							
 							Groupbox:Rescale()
 							
-							return Slider;
+							return Slider.CurrentValue;
 						end
 						
 					end
