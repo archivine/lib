@@ -474,7 +474,7 @@ function Library:CreateWindow(Title, Options)
 										if Toggle.Hover then
 
 											Toggle:Activate();
-											Toggle:OnChanged();
+											Toggle.OnChanged();
 
 										end
 									end
