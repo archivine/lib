@@ -629,7 +629,7 @@ function Library:CreateWindow(Title, Options)
 				end
 				
 				function Tab:AddRightGroupBox(Name) 
-					return Tab:AddGroupBox(Name, "8");
+					return Tab:AddGroupBox(Name, "9");
 				end
 			end
 			
