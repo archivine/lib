@@ -534,7 +534,7 @@ function Library:CreateWindow(Title, Options)
 								-- StarterGui.ScreenGui.Frame.Main.Body.Content.Frame.GroupBoxContainer.GroupBox.Slider.Inner.Outer
 								Slider["7"] = Instance.new("Frame", Slider["5"]);
 								Slider["7"]["BorderSizePixel"] = 0;
-								Slider["7"]["BackgroundColor3"] = Color3.fromRGB(255, 0, 5);
+								Slider["7"]["BackgroundColor3"] = Window.AccentColor;
 								Slider["7"]["LayoutOrder"] = 2;
 								Slider["7"]["Size"] = UDim2.new(0, 0, 0, 16);
 								Slider["7"]["Name"] = [[Outer]];
