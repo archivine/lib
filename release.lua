@@ -11,13 +11,18 @@ function Library:CreateWindow(Title, Options)
 	local Window = {
 		DragHover = false,
 		CurrentTab = nil,
-		AccentColor =  Color3.fromRGB(255, 0, 4)
+		AccentColor =  Color3.fromRGB(255, 0, 4),
+		Size = UDim2.new(0, 550, 0, 600)
 	}
 	
 	-- Unpack args
 	if Options then 
 		if Options.AccentColor then 
 			Window.AccentColor = Options.AccentColor
+		end
+		
+		if Options.Size then 
+			Window.Size = Options.Size
 		end
 	end
 	
@@ -32,7 +37,7 @@ function Library:CreateWindow(Title, Options)
 		Window["2"]["BorderSizePixel"] = 0;
 		Window["2"]["BackgroundColor3"] = Window.AccentColor;
 		Window["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-		Window["2"]["Size"] = UDim2.new(0, 550, 0, 600);
+		Window["2"]["Size"] = Window.Size
 		Window["2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
 		-- StarterGui.ScreenGui.Frame.UIStroke
