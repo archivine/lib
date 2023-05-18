@@ -24,7 +24,7 @@ function Library:CreateWindow(Title, Options)
 	-- Render main window
 	do 
 		-- StarterGui.ScreenGui
-		Window["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("CoreGui"));
+		Window["1"] = Instance.new("ScreenGui", game:GetService("CoreGui"));
 		Window["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
 		-- StarterGui.ScreenGui.Frame
