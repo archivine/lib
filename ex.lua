@@ -1,3 +1,6 @@
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/archivine/lib/main/release.lua"))()
+ 
 local Window = Library:CreateWindow("sheizehax", {AccentColor = Color3.fromRGB(255, 255, 255)});
 
 local MainTab = Window:AddTab("Tab 0")
