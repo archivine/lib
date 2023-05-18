@@ -484,11 +484,25 @@ function Library:CreateWindow(Title, Options)
 							
 						end
 						
-						function Groupbox:AddSlider(Title, MinValue, MaxValue, DefaultValue)
-							local Slider = {
-								CurrentValue = 0;	
-								MaxSize = 235;
+						function Groupbox:AddSlider(Title, MinValue, MaxValue, Options)
+                            local Slider = {
+								CurrentValue = 0,	
+								MaxSize = 0,
+                                DefaultValue = 1,
+                                Rounding = 0
 							};
+							
+                            -- Unpack args
+
+                            if Options then 
+                                if Options.DefaultValue then 
+                                    Slider.DefaultValue = Options.DefaultValue
+                                end
+
+                                if Options.Rounding then 
+                                    Slider.Rounding = Options.Rounding
+                                end
+                            end
 							
 							-- Render
 							
@@ -559,7 +573,7 @@ function Library:CreateWindow(Title, Options)
 								Slider["8"]["Name"] = [[Label]];
 								Slider["8"]["BackgroundTransparency"] = 1;
 							end
-							
+							Slider.MaxSize = Slider["5"]["AbsoluteSize"]["X"]
 							
 							-- Functions
 							
@@ -581,9 +595,20 @@ function Library:CreateWindow(Title, Options)
 									Slider.Changed = Func;
 									Func();
 								end
+
+                                function Slider:Round(Value)
+                                    if Slider.Rounding == 0 then
+                                        return math.floor(Value);
+                                    end;
+                        
+                                    local Str = Value .. '';
+                                    local Dot = Str:find('%.');
+                        
+                                    return Dot and tonumber(Str:sub(1, Dot + Slider.Rounding)) or Value;
+                                end;
 								
 								function Slider:GetValueFromXOffset(X)
-									return math.floor(Slider:Map(X, 0, Slider.MaxSize, MinValue, MaxValue));
+									return Slider:Round(Slider:Map(X, 0, Slider.MaxSize, MinValue, MaxValue));
 								end;
 
 								
@@ -615,7 +640,7 @@ function Library:CreateWindow(Title, Options)
 									
 								end)
 								
-								Slider.CurrentValue = DefaultValue;
+								Slider.CurrentValue = Slider.DefaultValue;
 								Slider:Update();
 								
 								
