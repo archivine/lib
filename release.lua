@@ -648,7 +648,7 @@ function Library:CreateWindow(Title, Options)
 							
 							Groupbox:Rescale()
 							
-							return Slider.CurrentValue;
+							return Slider;
 						end
 						
 					end
