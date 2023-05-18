@@ -610,6 +610,9 @@ function Library:CreateWindow(Title, Options)
 									
 								end)
 								
+								Slider.CurrentValue = DefaultValue;
+								Slider:Update();
+								
 								
 							end
 							
