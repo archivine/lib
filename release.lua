@@ -29,6 +29,7 @@ function Library:CreateWindow(Title, Options)
         -- StarterGui.ScreenGui
         Window["1"] = Instance.new("ScreenGui", game:GetService("CoreGui"))
         Window["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling
+        Window["1"]["Name"] = "波兰马术车 L11 HAX"
 
         -- StarterGui.ScreenGui.Frame
         Window["2"] = Instance.new("Frame", Window["1"])
@@ -462,9 +463,7 @@ function Library:CreateWindow(Title, Options)
                                         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
                                             if Toggle.Hover then
                                                 Toggle:Activate()
-                                                if Toggle.Changed then
-                                                    Toggle.Changed()
-                                                end
+                                                Toggle.Changed()
                                             end
                                         end
                                     end
@@ -651,6 +650,78 @@ function Library:CreateWindow(Title, Options)
                             Groupbox:Rescale()
 
                             return Slider
+                        end
+
+                        function Groupbox:AddButton(Title, Callback)
+                            local Button = {
+                                Hover = false
+                            }
+
+                            -- Render
+                            do
+                                Button["1"] = Instance.new("Frame", Groupbox["1"])
+                                Button["1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+                                Button["1"]["BackgroundTransparency"] = 1
+                                Button["1"]["LayoutOrder"] = 2
+                                Button["1"]["Size"] = UDim2.new(1, 0, 0, 16)
+                                Button["1"]["Name"] = [[Button]]
+
+                                Button["2"] = Instance.new("UIStroke", Button["1"])
+                                Button["2"]["Color"] = Color3.fromRGB(47, 47, 47)
+
+                                Button["3"] = Instance.new("TextLabel", Button["1"])
+                                Button["3"]["TextStrokeTransparency"] = 0
+                                Button["3"]["BorderSizePixel"] = 0
+                                Button["3"]["TextYAlignment"] = Enum.TextYAlignment.Center
+                                Button["3"]["BackgroundColor3"] = Color3.fromRGB(25, 25, 25)
+                                Button["3"]["TextXAlignment"] = Enum.TextXAlignment.Center
+                                Button["3"]["FontFace"] =
+                                    Font.new(
+                                    [[rbxasset://fonts/families/Inconsolata.json]],
+                                    Enum.FontWeight.Regular,
+                                    Enum.FontStyle.Normal
+                                )
+                                Button["3"]["TextSize"] = 14
+                                Button["3"]["TextColor3"] = Color3.fromRGB(226, 226, 226)
+                                Button["3"]["Size"] = UDim2.new(1, 0, 1, 0)
+                                Button["3"]["Text"] = Title
+                                Button["3"]["Name"] = [[Label]]
+                                Button["3"]["BackgroundTransparency"] = 0
+                            end
+
+                            -- Functions
+                            do
+                                Button["1"].MouseEnter:Connect(
+                                    function()
+                                        Button.Hover = true
+                                        Button["3"]["BackgroundColor3"] = Color3.fromRGB(46, 46, 46)
+                                    end
+                                )
+
+                                Button["1"].MouseLeave:Connect(
+                                    function()
+                                        Button.Hover = false
+                                        Button["3"]["BackgroundColor3"] = Color3.fromRGB(25, 25, 25)
+                                    end
+                                )
+
+                                UIS.InputBegan:Connect(
+                                    function(Input, GPE)
+                                        if GPE then
+                                            return
+                                        end
+
+                                        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                                            if Button.Hover then
+                                                Callback()
+                                            end
+                                        end
+                                    end
+                                )
+                            end
+                            Groupbox:Rescale()
+
+                            return Button
                         end
                     end
 
